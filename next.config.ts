@@ -1,8 +1,6 @@
-/** @type {import('next').NextConfig} */
+// 수정 후 (✅)
 const nextConfig = {
-  images: {
-    domains: ['source.unsplash.com'],
-  },
+
 };
 
-module.exports = nextConfig;
+export default nextConfig;

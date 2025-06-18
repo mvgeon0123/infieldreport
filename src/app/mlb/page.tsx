@@ -5,23 +5,15 @@ export default function MLBPage() {
   const filtered = posts.filter(p => p.category === 'mlb');
 
   return (
-    <main className="p-6 max-w-4xl mx-auto">
+    <main className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">MLB Columns</h1>
-      {filtered.length === 0 ? (
-        <p>No posts found.</p>
-      ) : (
-        <ul className="space-y-6">
-          {filtered.map(post => (
-            <li key={post.id} className="border-b pb-4">
-              <a href={`/mlb/${post.id}`} className="text-xl font-semibold text-blue-700 hover:underline">
-                {post.title}
-              </a>
-              <p className="text-sm text-gray-500">{post.date}</p>
-              <p className="mt-1 text-gray-700">{post.excerpt}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+      {filtered.map(post => (
+        <div key={post.id} className="mb-6 border-b pb-4">
+          <img src={post.image} className="w-full h-48 object-cover rounded" />
+          <h2 className="text-xl font-semibold mt-2">{post.title}</h2>
+          <p className="text-gray-600">{post.excerpt}</p>
+        </div>
+      ))}
     </main>
   );
 }

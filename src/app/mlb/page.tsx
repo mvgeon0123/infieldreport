@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 
 export default function MLBPage() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -14,16 +13,6 @@ export default function MLBPage() {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-10">
-      <nav className="mb-6 flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold text-black">Infield Report</Link>
-        <div className="space-x-4">
-          <Link href="/mlb" className="text-sm font-medium">MLB</Link>
-          <Link href="/kbo" className="text-sm font-medium">KBO</Link>
-          <Link href="/baseball" className="text-sm font-medium">Baseball</Link>
-          <Link href="/forum" className="text-sm font-medium">Forum</Link>
-        </div>
-      </nav>
-
       <h1 className="text-2xl font-bold mb-6">MLB 게시판</h1>
       {posts.length === 0 ? (
         <p>등록된 글이 없습니다.</p>

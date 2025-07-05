@@ -22,15 +22,18 @@ interface LayoutProps {
   children: ReactNode
 }
 
-export default function PostLayout({ content, children }: LayoutProps) {
+export default function PostLayout({ content, authorDetails, children }: LayoutProps) {
   const { date, title, tags } = content
+
+  const authorNames = authorDetails.map((a) => a.name).join(', ')
 
   return (
     <SectionContainer>
       <article className="mx-auto max-w-3xl px-4 py-12">
-        {/* 날짜 */}
+        {/* 날짜 + 저자 */}
         <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
           {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+          {authorNames && ` · by ${authorNames}`}
         </p>
 
         {/* 제목 */}

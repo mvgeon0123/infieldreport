@@ -44,19 +44,17 @@ export default function PostLayout({ content, authorDetails, children }: LayoutP
         {/* 본문 */}
         <div className="prose prose-lg dark:prose-invert max-w-none pb-8">{children}</div>
 
-        {/* 태그 */}
-        {tags && tags.length > 0 && (
-          <div className="mt-10 border-t pt-6">
-            <div className="mb-2 text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">
-              Tags
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <Tag key={tag} text={tag} />
-              ))}
-            </div>
-          </div>
-        )}
+      {/* 카테고리 */}
+{content.category && (
+  <div className="mt-10 border-t pt-6">
+    <div className="mb-2 text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">
+      Category
+    </div>
+    <div className="text-base font-medium text-primary-500 dark:text-primary-400">
+      {content.category}
+    </div>
+  </div>
+)}
       </article>
     </SectionContainer>
   )

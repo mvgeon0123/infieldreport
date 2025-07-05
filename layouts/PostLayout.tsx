@@ -1,20 +1,60 @@
-<SectionContainer>
-  <article className="mx-auto max-w-3xl px-4 py-10">
-    <header className="mb-8 text-center">
-      <p className="text-sm text-gray-500 dark:text-gray-400">
-        {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-      </p>
-      <h1 className="mt-2 text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-        {title}
-      </h1>
-    </header>
+'use client'
 
-    <section className="prose dark:prose-invert max-w-none pb-8">{children}</section>
+import { ReactNode } from 'react'
+import type { Blog, Authors } from 'contentlayer/generated'
+import { CoreContent } from 'pliny/utils/contentlayer'
+import SectionContainer from '@/components/SectionContainer'
+import siteMetadata from '@/data/siteMetadata'
+import Tag from '@/components/Tag'
 
-    {tags && (
-      <div className="pt-6 text-sm text-gray-500 dark:text-gray-400 text-center">
-        {tags.join(' · ')}
-      </div>
-    )}
-  </article>
-</SectionContainer>
+const postDateTemplate: Intl.DateTimeFormatOptions = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}
+
+interface LayoutProps {
+  content: CoreContent<Blog>
+  authorDetails: CoreContent<Authors>[]
+  next?: { path: string; title: string }
+  prev?: { path: string; title: string }
+  children: ReactNode
+}
+
+export default function PostLayout({ content, children }: LayoutProps) {
+  const { date, title, tags } = content
+
+  return (
+    <SectionContainer>
+      <article className="mx-auto max-w-3xl px-4 py-12">
+        {/* 날짜 */}
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+          {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+        </p>
+
+        {/* 제목 */}
+        <h1 className="text-4xl font-extrabold leading-tight text-gray-900 dark:text-white mb-6">
+          {title}
+        </h1>
+
+        {/* 본문 */}
+        <div className="prose prose-lg dark:prose-invert max-w-none">{children}</div>
+
+        {/* 태그 */}
+        {tags && tags.length > 0 && (
+          <div className="mt-10 border-t pt-6">
+            <div className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">
+              Tags
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <Tag key={tag} text={tag} />
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+    </SectionContainer>
+  )
+}

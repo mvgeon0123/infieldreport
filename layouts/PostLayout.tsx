@@ -29,22 +29,22 @@ export default function PostLayout({ content, children }: LayoutProps) {
     <SectionContainer>
       <article className="mx-auto max-w-3xl px-4 py-12">
         {/* 날짜 */}
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
           {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
         </p>
 
         {/* 제목 */}
-        <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white leading-tight tracking-tight mb-6">
+        <h1 className="mb-6 text-5xl leading-tight font-extrabold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h1>
 
         {/* 본문 */}
-        <div className="prose dark:prose-invert max-w-none pb-8">{children}</div>
+        <div className="prose prose-lg dark:prose-invert max-w-none pb-8">{children}</div>
 
         {/* 태그 */}
         {tags && tags.length > 0 && (
           <div className="mt-10 border-t pt-6">
-            <div className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">
+            <div className="mb-2 text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">
               Tags
             </div>
             <div className="flex flex-wrap gap-2">

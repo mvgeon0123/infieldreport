@@ -34,12 +34,12 @@ export default function PostLayout({ content, children }: LayoutProps) {
         </p>
 
         {/* 제목 */}
-        <h1 className="text-4xl font-extrabold leading-tight text-gray-900 dark:text-white mb-6">
+        <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white leading-tight tracking-tight mb-6">
           {title}
         </h1>
 
         {/* 본문 */}
-        <div className="prose prose-lg dark:prose-invert max-w-none">{children}</div>
+        <div className="prose dark:prose-invert max-w-none pb-8">{children}</div>
 
         {/* 태그 */}
         {tags && tags.length > 0 && (
